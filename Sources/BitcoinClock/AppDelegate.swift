@@ -1,6 +1,7 @@
 import AppKit
 import SwiftUI
 import Combine
+import ServiceManagement
 
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
@@ -30,6 +31,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.updateTitle() }
             .store(in: &cancellables)
+
+        DispatchQueue.main.async { [weak self] in
+            self?.registerLaunchAtLogin()
+        }
+    }
+
+    private func registerLaunchAtLogin() {
+        guard SMAppService.mainApp.status != .enabled else { return }
+        do {
+            try SMAppService.mainApp.register()
+        } catch {
+            NSLog("Launch-at-login registration failed: \(error)")
+        }
     }
 
     @objc private func togglePopover() {
