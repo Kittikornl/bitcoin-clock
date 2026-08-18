@@ -1,5 +1,3 @@
-import Foundation
-
 enum BitcoinPalette {
     static let orangeR: Double = 0xF7 / 255
     static let orangeG: Double = 0x93 / 255

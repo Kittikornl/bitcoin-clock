@@ -28,9 +28,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         service.objectWillChange
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                DispatchQueue.main.async { self?.updateTitle() }
-            }
+            .sink { [weak self] _ in self?.updateTitle() }
             .store(in: &cancellables)
     }
 
