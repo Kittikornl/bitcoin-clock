@@ -2,6 +2,8 @@
 
 A tiny macOS menu bar app showing live Bitcoin block height, price, and time until the next halving.
 
+![Bitcoin Clock screenshot](docs/screenshot.png)
+
 ## Features
 
 - Menu bar shows current block height (⛏ prefix, Bitcoin-orange text)
