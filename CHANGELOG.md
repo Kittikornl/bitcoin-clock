@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.0.2
 
 - On first launch from outside Applications (dmg, Downloads), offer to move the app into /Applications and relaunch from there
 - Menu bar: draw the pickaxe from STIX Two Math as an image instead of putting "⛏" in the title, so newer macOS no longer swaps in the emoji font (grey glyph, digits pushed down and clipped)
