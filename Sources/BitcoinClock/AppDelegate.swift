@@ -13,7 +13,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.accessory)
 
+        // Launched from a dmg or Downloads: offer to move into /Applications and relaunch from there.
+        if MoveToApplications.offerIfNeeded() { return }
+
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        statusItem.button?.image = PickaxeIcon.image(color: .bitcoinOrange)
+        statusItem.button?.imagePosition = .imageLeft
         statusItem.button?.action = #selector(togglePopover)
         statusItem.button?.target = self
 
@@ -58,9 +63,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func updateTitle() {
         let text: String
         if let height = service.blockHeight {
-            text = "⛏ \(height.formatted(.number.grouping(.automatic)))"
+            text = " \(height.formatted(.number.grouping(.automatic)))"
         } else {
-            text = "⛏ --"
+            text = " --"
         }
 
         let attributed = NSAttributedString(

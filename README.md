@@ -21,6 +21,8 @@ A tiny macOS menu bar app showing live Bitcoin block height, price, and time unt
 
 Grab the latest `.dmg` from [Releases](../../releases), open it, drag **Bitcoin Clock** into Applications.
 
+If you open the app from the dmg or Downloads instead, it offers to move itself into Applications on first launch.
+
 The app is ad-hoc signed (no Apple Developer account), so macOS Gatekeeper will block the first launch. Right-click the app → **Open** → **Open** again in the dialog. Only needed once.
 
 ## Requirements
