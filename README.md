@@ -17,13 +17,19 @@ A tiny macOS menu bar app showing live Bitcoin block height, price, and time unt
 
 - Launches at login automatically (via `SMAppService`)
 
-## Install (non-technical users)
+## Install
 
-Grab the latest `.dmg` from [Releases](../../releases), open it, drag **Bitcoin Clock** into Applications.
+**Terminal (no warning):** downloads made with `curl` are not flagged by macOS, so the app opens straight away:
 
-If you open the app from the dmg or Downloads instead, it offers to move itself into Applications on first launch.
+```bash
+curl -L -o ~/Downloads/BitcoinClock.dmg https://github.com/Kittikornl/bitcoin-clock/releases/latest/download/BitcoinClock.dmg && open ~/Downloads/BitcoinClock.dmg
+```
 
-The app is ad-hoc signed (no Apple Developer account), so macOS Gatekeeper will block the first launch. Right-click the app → **Open** → **Open** again in the dialog. Only needed once.
+**Browser:** download the latest `.dmg` from [Releases](../../releases) and open it. The app is not notarized (no paid Apple Developer account yet), so macOS blocks a file that came through a browser with "Apple could not verify…". To allow it: open **System Settings → Privacy & Security**, scroll to the message about "BitcoinClock", click **Open Anyway**, and enter your password. (On older macOS you can right-click the app → **Open** instead.)
+
+Either way, when you open the app from the dmg or Downloads it offers to move itself into Applications on first launch.
+
+Want it notarized so nobody sees a warning? The Apple Developer fee is about $99/year; sats toward it are welcome (see the Lonlaam page).
 
 ## Requirements
 

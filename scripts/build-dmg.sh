@@ -69,4 +69,8 @@ DMG_PATH="$BUILD_DIR/$APP_NAME-$VERSION.dmg"
 rm -f "$DMG_PATH"
 hdiutil create -volname "$APP_NAME" -srcfolder "$STAGING_DIR" -ov -format UDZO "$DMG_PATH"
 
-echo "Done: $DMG_PATH"
+# Also publish a copy without the version in its name, so a stable URL works:
+#   https://github.com/<owner>/bitcoin-clock/releases/latest/download/BitcoinClock.dmg
+cp "$DMG_PATH" "$BUILD_DIR/$APP_NAME.dmg"
+
+echo "Done: $DMG_PATH (and $BUILD_DIR/$APP_NAME.dmg)"

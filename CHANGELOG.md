@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- README: curl install command (no Gatekeeper warning) and current "Open Anyway" steps
+- build-dmg.sh: also produce BitcoinClock.dmg (no version in the name) for a stable latest-download URL
+
 ## 1.0.2
 
 - On first launch from outside Applications (dmg, Downloads), offer to move the app into /Applications and relaunch from there
