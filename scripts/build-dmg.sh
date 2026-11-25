@@ -16,12 +16,16 @@ rm -rf "$BUILD_DIR"
 mkdir -p "$APP_BUNDLE/Contents/MacOS" "$APP_BUNDLE/Contents/Resources"
 
 echo "Building universal binary (arm64 + x86_64)..."
-swift build -c release --arch arm64
-swift build -c release --arch x86_64
-lipo -create \
-  ".build/arm64-apple-macosx/release/$APP_NAME" \
-  ".build/x86_64-apple-macosx/release/$APP_NAME" \
-  -output "$APP_BUNDLE/Contents/MacOS/$APP_NAME"
+swift build -c release --arch arm64 --arch x86_64
+# Ask SwiftPM where the product went: the output directory differs between toolchains,
+# and a hardcoded path can silently pick up a stale binary from an older build.
+BIN_DIR="$(swift build -c release --arch arm64 --arch x86_64 --show-bin-path | tail -1)"
+cp "$BIN_DIR/$APP_NAME" "$APP_BUNDLE/Contents/MacOS/$APP_NAME"
+ARCHS="$(lipo -archs "$APP_BUNDLE/Contents/MacOS/$APP_NAME")"
+if [[ "$ARCHS" != *arm64* || "$ARCHS" != *x86_64* ]]; then
+  echo "Expected a universal binary (arm64 + x86_64), got: $ARCHS" >&2
+  exit 1
+fi
 
 cp Resources/AppIcon.icns "$APP_BUNDLE/Contents/Resources/AppIcon.icns"
 
